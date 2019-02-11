@@ -5,36 +5,36 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : killbots
-Version  : 18.08.0
-Release  : 1
-URL      : https://download.kde.org/stable/applications/18.08.0/src/killbots-18.08.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.08.0/src/killbots-18.08.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.08.0/src/killbots-18.08.0.tar.xz.sig
+Version  : 18.12.2
+Release  : 2
+URL      : https://download.kde.org/stable/applications/18.12.2/src/killbots-18.12.2.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.2/src/killbots-18.12.2.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.2/src/killbots-18.12.2.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
-Requires: killbots-bin
-Requires: killbots-data
-Requires: killbots-license
-Requires: killbots-locales
+Requires: killbots-bin = %{version}-%{release}
+Requires: killbots-data = %{version}-%{release}
+Requires: killbots-license = %{version}-%{release}
+Requires: killbots-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : libkdegames-dev
-BuildRequires : qtbase-dev qtbase-extras mesa-dev
+BuildRequires : qtbase-dev mesa-dev
 
 %description
-==========================
-Killbots C++ Style Guide
-==========================
-*******************************************************************************
-Indentation
-*******************************************************************************
+Translating Keyboard Controls in Killbots
+To effectively use the keyboard to control Killbots. the movement keys must be
+assigned to a 3 by 3 grid of adjacent keys. In KDE 4.2, the basic directional
+controls were assigned to Q,W,E,A,S,D,Z,X,C,(the leftmost block of letter keys
+on a QWERTY keyboard). Special action keys were assigned to those just right
+of this block. The keys of the numeric keypad were added as an alternate set.
 
 %package bin
 Summary: bin components for the killbots package.
 Group: Binaries
-Requires: killbots-data
-Requires: killbots-license
+Requires: killbots-data = %{version}-%{release}
+Requires: killbots-license = %{version}-%{release}
 
 %description bin
 bin components for the killbots package.
@@ -73,26 +73,26 @@ locales components for the killbots package.
 
 
 %prep
-%setup -q -n killbots-18.08.0
+%setup -q -n killbots-18.12.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535229531
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1549867873
+mkdir -p clr-build
 pushd clr-build
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1535229531
+export SOURCE_DATE_EPOCH=1549867873
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/killbots
-cp COPYING %{buildroot}/usr/share/doc/killbots/COPYING
-cp COPYING.DOC %{buildroot}/usr/share/doc/killbots/COPYING.DOC
+mkdir -p %{buildroot}/usr/share/package-licenses/killbots
+cp COPYING %{buildroot}/usr/share/package-licenses/killbots/COPYING
+cp COPYING.DOC %{buildroot}/usr/share/package-licenses/killbots/COPYING.DOC
 pushd clr-build
 %make_install
 popd
@@ -171,9 +171,9 @@ popd
 /usr/share/doc/HTML/uk/killbots/status.png
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/killbots/COPYING
-/usr/share/doc/killbots/COPYING.DOC
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/killbots/COPYING
+/usr/share/package-licenses/killbots/COPYING.DOC
 
 %files locales -f killbots.lang
 %defattr(-,root,root,-)
