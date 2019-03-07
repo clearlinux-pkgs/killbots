@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : killbots
-Version  : 18.12.2
-Release  : 3
-URL      : https://download.kde.org/stable/applications/18.12.2/src/killbots-18.12.2.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.12.2/src/killbots-18.12.2.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.12.2/src/killbots-18.12.2.tar.xz.sig
+Version  : 18.12.3
+Release  : 4
+URL      : https://download.kde.org/stable/applications/18.12.3/src/killbots-18.12.3.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.3/src/killbots-18.12.3.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.3/src/killbots-18.12.3.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
@@ -23,12 +23,12 @@ BuildRequires : libkdegames-dev
 BuildRequires : qtbase-dev mesa-dev
 
 %description
-Translating Keyboard Controls in Killbots
-To effectively use the keyboard to control Killbots. the movement keys must be
-assigned to a 3 by 3 grid of adjacent keys. In KDE 4.2, the basic directional
-controls were assigned to Q,W,E,A,S,D,Z,X,C,(the leftmost block of letter keys
-on a QWERTY keyboard). Special action keys were assigned to those just right
-of this block. The keys of the numeric keypad were added as an alternate set.
+==========================
+Killbots C++ Style Guide
+==========================
+*******************************************************************************
+Indentation
+*******************************************************************************
 
 %package bin
 Summary: bin components for the killbots package.
@@ -73,22 +73,23 @@ locales components for the killbots package.
 
 
 %prep
-%setup -q -n killbots-18.12.2
+%setup -q -n killbots-18.12.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549885739
+export SOURCE_DATE_EPOCH=1551999333
 mkdir -p clr-build
 pushd clr-build
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1549885739
+export SOURCE_DATE_EPOCH=1551999333
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/killbots
 cp COPYING %{buildroot}/usr/share/package-licenses/killbots/COPYING
