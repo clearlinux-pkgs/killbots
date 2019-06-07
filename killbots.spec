@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : killbots
-Version  : 19.04.1
-Release  : 8
-URL      : https://download.kde.org/stable/applications/19.04.1/src/killbots-19.04.1.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.1/src/killbots-19.04.1.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.1/src/killbots-19.04.1.tar.xz.sig
+Version  : 19.04.2
+Release  : 9
+URL      : https://download.kde.org/stable/applications/19.04.2/src/killbots-19.04.2.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.2/src/killbots-19.04.2.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.2/src/killbots-19.04.2.tar.xz.sig
 Summary  : A simple game of evading killer robots
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
@@ -73,14 +73,14 @@ locales components for the killbots package.
 
 
 %prep
-%setup -q -n killbots-19.04.1
+%setup -q -n killbots-19.04.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1557444209
+export SOURCE_DATE_EPOCH=1559891262
 mkdir -p clr-build
 pushd clr-build
 export AR=gcc-ar
@@ -95,7 +95,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1557444209
+export SOURCE_DATE_EPOCH=1559891262
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/killbots
 cp COPYING %{buildroot}/usr/share/package-licenses/killbots/COPYING
